@@ -1,0 +1,9 @@
+<div class="d-flex justify-content-between">
+    <mat-paginator
+        #paginator
+        [length]="page?.totalElements"
+        (page)="handlePageEvent($event)"
+        [hidden]="!page"
+        [pageSizeOptions]="pageSizeOptions" showFirstLastButtons>
+    </mat-paginator>
+</div>

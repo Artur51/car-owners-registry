@@ -1,0 +1,19 @@
+
+<app-filter-data>
+</app-filter-data>
+
+<div class="container d-flex justify-content-center align-items-center flex-column">
+    <app-paginator
+        (onPaginationChange)="dataProviderService.onPaginationChange($event)"
+        [page]="dataProviderService.carsData || dataProviderService.usersData">
+    </app-paginator>
+</div>
+
+<app-car-table-view
+    *ngIf="dataProviderService.carsData"
+    [page]="dataProviderService.carsData">
+</app-car-table-view>
+<app-user-table-view
+    *ngIf="dataProviderService.usersData"
+    [page]="dataProviderService.usersData">
+</app-user-table-view>

@@ -1,0 +1,27 @@
+pipeline {
+    agent any
+	environment {
+        registry = "arturzuravljov/car-owners-registry-backend"
+        registryCredential = 'dockerhub'        
+    }
+    stages {
+        stage('Prepare') {
+            steps {
+                bat './gradlew.bat clean --refresh-dependencies'
+            }
+        }
+
+        stage('Build bootjar') {            
+            steps {
+                bat './gradlew.bat bootJar'
+            }
+        }  
+
+		stage('Compile and push docker image') {            
+            steps {
+                bat './gradlew.bat docker dockerLogin dockerPush'
+            }
+        }
+		
+    }
+}

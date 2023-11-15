@@ -1,0 +1,64 @@
+
+<div class="container d-flex justify-content-center align-items-center mt-3">
+    
+    <div class="row">
+        <div class="col-sm-12 col-md-2">
+            
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>{{ 'Data type' }}</mat-label>
+                <mat-select
+                    [(ngModel)]="data.dataType">
+                    <mat-option *ngFor="let item of dataTypes"
+                        [value]="item">
+                        {{ item | lowercase }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        
+        <div class="col-sm-12 col-md-4">
+            <mat-form-field class="w-100"
+                appearance="outline">
+                <mat-label>
+                    {{ 'Filter Text' }}
+                </mat-label>
+                <input
+                    [(ngModel)]="data.text"
+                    matInput/>
+            </mat-form-field>
+        </div>
+        
+        <div class="col-sm-12 col-md-2">
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>{{ 'Sort field name' }}</mat-label>
+                <mat-select
+                    [(ngModel)]="data.sortFieldName">
+                    <mat-option *ngFor="let item of sortFieldNameSelectionItems()"
+                        [value]="item">
+                        {{ item == null ? 'undefined' : item }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="col-sm-12 col-md-2">
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>{{ 'Sort direction' }}</mat-label>
+                <mat-select
+                    [(ngModel)]="data.sortDirectionAsc">
+                    <mat-option [value]="true">{{ 'ascending' }}</mat-option>
+                    <mat-option [value]="false">{{ 'descending' }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="col-sm-12 col-md-2">
+            <button
+                color="primary"
+                mat-button
+                mat-flat-button
+                class="my-2 mr-2"
+                (click)="onSearchButtonClick()"
+                type="button">{{ 'Search' }}
+            </button>
+        </div>
+    </div>
+</div>

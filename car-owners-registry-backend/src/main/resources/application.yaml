@@ -1,0 +1,36 @@
+
+cors.urls: http://localhost:4200
+
+spring.config.import: optional:file:./.env[.properties]
+
+// NOTE: as soon as we load data from file we drop it each time.
+spring.jpa.hibernate.ddl-auto: create-drop
+spring.jpa.defer-datasource-initialization: true
+spring.sql.init.mode: always
+
+spring:
+  datasource:
+    url: ${spring.datasource.url}
+    username: ${spring.datasource.username}
+    password: ${spring.datasource.password}
+    driver-class-name: org.postgresql.Driver
+  jackson:
+    serialization:
+      FAIL_ON_EMPTY_BEANS: false
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      naming:
+        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyJpaCompliantImpl
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+        generate_statistics: false        
+        jdbc.batch_size: 200
+        order_inserts: true
+        order_updates: true
+        jdbc.batch_versioned_data: true
+        event.merge.entity_copy_observer: allow
+
+
